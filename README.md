@@ -51,10 +51,16 @@ conda env create -f conda_env.yml
 conda activate video_features
 
 # extract r(2+1)d features for the sample videos
+`
 python main.py \
     feature_type=r21d \
     device="cuda:0" \
     video_paths="[./sample/v_ZNVhz7ctTq0.mp4, ./sample/v_GGSY1Qvo990.mp4]"
+`
+# Other examples:
+`
+python main.py     feature_type=i3d     device="cuda:0"    file_with_video_paths='./video_path.txt' on_extraction='save_numpy'
+`
 
 # if you have many GPUs, just run this command from another terminal with another device
 # device can also be "cpu"
