@@ -4,20 +4,24 @@ import os
 from collections import defaultdict
 
 #Parameters
-half_stack_size = 75/25*1000/2 # in unit of ms
-q_stack_size = 75/25*1000/4
+half_stack_size = 25/25*1000/2 # in unit of ms
+q_stack_size = 25/25*1000/4
 lb1 = 'Pick_up_part'
 lb2 = 'Screw_and_install'
 lb3 = 'Wrap_up'
 
 # Load the .npy file
-org_npy_dir='./output/i3d_S75_S5'
+org_npy_dir='./output/i3d_S25_S5'
 org_label_dir='./sample/GYY_Buckle_Asembly_Label'
 file_path = './output/i3d/20250515_20250515155254_20250515155304_155254_timestamps_ms.npy'
 
 video_path_list_txt = './video_path.txt'
 video_path = './sample/GYY_Buckle_Asembly_Video/20250515_20250515155254_20250515155304_155254.mp4'
 label_paths = ''
+
+# Output folder
+output_dir = './output/merged_npy_Stack25_Step5'
+os.makedirs(output_dir, exist_ok=True)
 
 def timestamp_to_ms(ts):
     """Converts 'SS:sSS' to milliseconds."""
@@ -54,9 +58,7 @@ for path in file_paths:
     groups[basename]['rgb']=rgb_path
     groups[basename]['ts']=ending_ts_path
     groups[basename]['org_label']=original_label_path
-# Output folder
-output_dir = './output/merged_npy'
-os.makedirs(output_dir, exist_ok=True)
+
 
 # Process and save
 for group_key, files in groups.items():
