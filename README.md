@@ -57,10 +57,44 @@ python main.py \
     device="cuda:0" \
     video_paths="[./sample/v_ZNVhz7ctTq0.mp4, ./sample/v_GGSY1Qvo990.mp4]"
 `
-# Other examples:
-`
+```
+
+## Other examples  GYY数据集端到端I3D特征提取分步教程示例:
+1. 长视频数据集gdrive链接
+    - [Teabox packing](https://drive.google.com/drive/folders/1JUXttIKVf1INlcPYKqXJ4d7ChmjjEvEX?usp=drive_link)
+    - [Install rubber](https://drive.google.com/drive/folders/1CZTujhVk9xrShc3larWCUnVeSxBmY6V_?usp=drive_link)
+
+
+2. Before Start, 确保视频文件格式干净。如果通过np_file_viewer不能提取到正确的帧数，建议运行`sample`文件夹里的`batch_convert.sh`:
+```bash
+chmod +x batch_convert.sh
+./batch_convert.sh /path/to/your/folder
+```
+    注意需要预装ffmpeg
+
+3. 确保`i3d.yml`文件里设置成了你想要的stack和step
+
+4. 确保`video_path.txt`中为你想提取I3D特征的所有视频文件
+
+5. run cmds:
+```bash
 python main.py     feature_type=i3d     device="cuda:0"    file_with_video_paths='./video_path.txt' on_extraction='save_numpy'
+```
+6. Postprocess of I3D features to merge the rgb and flow files into one，运行前注意设定匹配的FPS和STACK参数以及npy输入输出文件目录:
+
+    *针对GYY数据集长视频的python代码：
 `
+python np_long_file_postprocessor.py
+`
+
+    *针对GYY数据集短视频的python代码：
+`
+python np_file_postprocessor.py
+`
+
+7. 运行`np_file_viewer.py`检查i3D和对应的label是不是正确和匹配的尺寸大小：
+
+    一般是 npy大小为 总steps数 X 2048，label文件里的总行数应该等于总step数。如果正确就完成了I3D特征提取和对应的标注文件生成。
 
 # if you have many GPUs, just run this command from another terminal with another device
 # device can also be "cpu"

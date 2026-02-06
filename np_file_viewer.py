@@ -2,10 +2,12 @@ import numpy as np
 import cv2
 
 # Load the .npy file
-file_path = './output/merged_npy/20250515_20250515155254_20250515155304_155254.npy'
+# file_path = './output/merged_npy_Stack25_Step5/20250515_20250515155254_20250515155304_155254.npy'
+file_path = './output/merged_npy_long_Stack50_Step25/10.50.7.232_04_20250704163158274_2560x1440_25fps.npy'
 # file_path = './output/i3d/20250515_20250515155254_20250515155304_155254_timestamps_ms.npy'
 # file_path = './output/i3d_S75_S5/20250515_20250515155254_20250515155304_155254_flow.npy'
-video_path = './sample/GYY_Buckle_Asembly_Video/20250515_20250515155254_20250515155304_155254.mp4'
+# video_path = './sample/GYY_Buckle_Asembly_Video/20250515_20250515155254_20250515155304_155254.mp4'
+video_path = './sample/GYY_Buckle_Asembly_Video_Long/10.50.7.232_04_20250704163158274_2560x1440_25fps.mp4'
 label_paths = ''
 
 # Frame counting
